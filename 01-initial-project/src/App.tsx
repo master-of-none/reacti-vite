@@ -1,39 +1,6 @@
-import reactImage from './assets/react-core-concepts.png';
 import { CORE_CONCEPTS } from './data';
-
-interface CoreConceptProps {
-    image: string;
-    title: string;
-    description: string;
-}
-
-const reactDescriptions: string[] = ['Fundamental', 'Crucial', 'Core'];
-
-function genRandomInt(max: number): number {
-    return Math.floor(Math.random() * (max + 1));
-}
-
-function Header() {
-    return (
-        <header>
-            <img src={reactImage} alt="Stylized atom" />
-            <h1>React Essentials</h1>
-            <p>
-                {reactDescriptions[genRandomInt(2)]}
-            </p>
-        </header>
-    );
-}
-
-function CoreConcept({ image, title, description }: CoreConceptProps) {
-    return (
-        <li>
-            <img src={image} alt={title} />
-            <h3> {title} </h3>
-            <p> {description} </p>
-        </li>
-    );
-}
+import Header from './components/Header';
+import CoreConcept from './components/CoreConcepts';
 
 function App() {
     return (

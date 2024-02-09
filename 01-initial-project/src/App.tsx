@@ -2,8 +2,15 @@ import { CORE_CONCEPTS } from "./data";
 import Header from "./components/Header/Header";
 import CoreConcept from "./components/CoreConcepts";
 import TabButton from "./components/TabButton";
+import { useState } from "react";
+import { EXAMPLES } from "./data";
 
 function App() {
+    const [selectedTopic, setSelectedTopic] = useState("components");
+
+    function handleSelect(selectedButton: string) {
+        setSelectedTopic(selectedButton);
+    }
     return (
         <div>
             <Header />
@@ -30,11 +37,42 @@ function App() {
                 <section id="examples">
                     <h2> Examples </h2>
                     <menu>
-                        <TabButton> Components </TabButton>
-                        <TabButton> JSX </TabButton>
-                        <TabButton> Props </TabButton>
-                        <TabButton> State </TabButton>
+                        <TabButton onSelect={() => handleSelect("components")}>
+                            Components
+                        </TabButton>
+                        <TabButton onSelect={() => handleSelect("jsx")}>
+                            JSX
+                        </TabButton>
+                        <TabButton onSelect={() => handleSelect("props")}>
+                            Props
+                        </TabButton>
+                        <TabButton onSelect={() => handleSelect("state")}>
+                            State
+                        </TabButton>
                     </menu>
+                    <div id="tab-content">
+                        <h3>
+                            {
+                                EXAMPLES[selectedTopic as keyof typeof EXAMPLES]
+                                    .title
+                            }
+                        </h3>
+                        <p>
+                            {
+                                EXAMPLES[selectedTopic as keyof typeof EXAMPLES]
+                                    .description
+                            }
+                        </p>
+                        <pre>
+                            <code>
+                                {
+                                    EXAMPLES[
+                                        selectedTopic as keyof typeof EXAMPLES
+                                    ].code
+                                }
+                            </code>
+                        </pre>
+                    </div>
                 </section>
                 <h2>Time to get started!</h2>
             </main>

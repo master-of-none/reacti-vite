@@ -1,12 +1,13 @@
 import React from "react";
 
-export default function TabButton(props: { children: React.ReactNode }) {
-    function handleClick() {
-        console.log("Hello World");
-    }
+interface tabButtonProps {
+    children: React.ReactNode;
+    onSelect: () => void;
+}
+export default function TabButton(props: tabButtonProps) {
     return (
         <li>
-            <button onClick={handleClick}>{props.children}</button>
+            <button onClick={props.onSelect}>{props.children}</button>
         </li>
     );
 }

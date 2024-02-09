@@ -1,6 +1,7 @@
 import { CORE_CONCEPTS } from "./data";
 import Header from "./components/Header/Header";
 import CoreConcept from "./components/CoreConcepts";
+import TabButton from "./components/TabButton";
 
 function App() {
     return (
@@ -25,6 +26,15 @@ function App() {
                         {/* Another Way of representing Props is as below */}
                         <CoreConcept {...CORE_CONCEPTS[3]} />
                     </ul>
+                </section>
+                <section id="examples">
+                    <h2> Examples </h2>
+                    <menu>
+                        <TabButton> Components </TabButton>
+                        <TabButton> JSX </TabButton>
+                        <TabButton> Props </TabButton>
+                        <TabButton> State </TabButton>
+                    </menu>
                 </section>
                 <h2>Time to get started!</h2>
             </main>

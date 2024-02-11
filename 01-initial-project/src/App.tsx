@@ -6,7 +6,7 @@ import { useState } from "react";
 import { EXAMPLES } from "./data";
 
 function App() {
-    const [selectedTopic, setSelectedTopic] = useState("components");
+    const [selectedTopic, setSelectedTopic] = useState("");
 
     function handleSelect(selectedButton: string) {
         setSelectedTopic(selectedButton);
@@ -50,29 +50,35 @@ function App() {
                             State
                         </TabButton>
                     </menu>
-                    <div id="tab-content">
-                        <h3>
-                            {
-                                EXAMPLES[selectedTopic as keyof typeof EXAMPLES]
-                                    .title
-                            }
-                        </h3>
-                        <p>
-                            {
-                                EXAMPLES[selectedTopic as keyof typeof EXAMPLES]
-                                    .description
-                            }
-                        </p>
-                        <pre>
-                            <code>
+                    {!selectedTopic ? (
+                        <p>Please select a topic</p>
+                    ) : (
+                        <div id="tab-content">
+                            <h3>
                                 {
                                     EXAMPLES[
                                         selectedTopic as keyof typeof EXAMPLES
-                                    ].code
+                                    ].title
                                 }
-                            </code>
-                        </pre>
-                    </div>
+                            </h3>
+                            <p>
+                                {
+                                    EXAMPLES[
+                                        selectedTopic as keyof typeof EXAMPLES
+                                    ].description
+                                }
+                            </p>
+                            <pre>
+                                <code>
+                                    {
+                                        EXAMPLES[
+                                            selectedTopic as keyof typeof EXAMPLES
+                                        ].code
+                                    }
+                                </code>
+                            </pre>
+                        </div>
+                    )}
                 </section>
                 <h2>Time to get started!</h2>
             </main>
